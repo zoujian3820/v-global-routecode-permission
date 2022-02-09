@@ -1,6 +1,6 @@
 {
   "name": "@mc/global-routecode-permission",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个对全局路由code做的校验工具",
   "main": "./dist/index.js",
   "files": [
@@ -66,7 +66,10 @@
           "functions": "never"
         }
       ],
-      "linebreak-style": ["off", "windows"],
+      "linebreak-style": [
+        "off",
+        "windows"
+      ],
       "no-param-reassign": 0,
       "func-names": 0
     }
