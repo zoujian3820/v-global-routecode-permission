@@ -13,7 +13,8 @@ module.exports = {
     path: resolve(__dirname, 'dist'),
     libraryExport: 'default',
     library: '[name]', // 整个库向外暴露的变量名
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    globalObject: 'this'
   },
   module: {
     rules: [
