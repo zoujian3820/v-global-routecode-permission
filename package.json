@@ -1,0 +1,79 @@
+{
+  "name": "@mc/global-routecode-permission",
+  "version": "1.0.0",
+  "description": "一个对全局路由code做的校验工具",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://bl-nexus.digi800.com/repository/bnpm-hosted/",
+    "access": "public"
+  },
+  "scripts": {
+    "pub": "npm run build && npm publish",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qingyun",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "core-js": "^3.21.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.25.4",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "eol-last": [
+        0
+      ],
+      "semi": [
+        2,
+        "never"
+      ],
+      "indent": [
+        2,
+        2
+      ],
+      "no-new": [
+        0
+      ],
+      "no-debugger": [
+        0
+      ],
+      "global-require": 0,
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "never",
+          "objects": "never",
+          "imports": "never",
+          "exports": "never",
+          "functions": "never"
+        }
+      ],
+      "linebreak-style": ["off", "windows"],
+      "no-param-reassign": 0,
+      "func-names": 0
+    }
+  },
+  "eslintIgnore": [
+    "dist/*",
+    "node_modules/*",
+    "build/*",
+    "*.md"
+  ]
+}
