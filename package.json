@@ -11,7 +11,8 @@
     "access": "public"
   },
   "scripts": {
-    "pub": "npm run build && npm publish",
+    "pub": "npm version patch && npm run build && npm publish && npm run git",
+    "git": "git add . && git commit -m '修改版本' && git push",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
