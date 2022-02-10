@@ -5,10 +5,17 @@ const getCodes = (vm) => {
   if (curSystem) {
     const list = curSystem.childMenuList
     // 全局的路由 code 只有一层，所以不用遍历子路由
-    const codes = list.filter((item) => item.menuCode.includes('-GLOBAL-')).map((item) => item.menuCode)
-    return codes
+    return list
+      .filter((item) => item.menuCode.includes('-GLOBAL-'))
+      .map((item) => item.menuCode)
   }
   return []
+}
+
+const searchCode = (codes, code) => {
+  // eslint-disable-next-line no-unused-vars
+  const [systemName, realCode] = code.split('-GLOBAL-')
+  return codes.find((itemCode) => itemCode.includes(realCode))
 }
 
 const RouteCodePermission = {
@@ -17,7 +24,7 @@ const RouteCodePermission = {
       el.parentNode.removeChild(el)
     } else {
       const { code, codes = getCodes(vnode.context) } = binding.value
-      if (codes.indexOf(code) === -1) {
+      if (!searchCode(codes, code)) {
         el.parentNode.removeChild(el)
       }
     }
@@ -28,7 +35,7 @@ export default {
   install(Vue) {
     Vue.directive('grcode', RouteCodePermission)
     Vue.prototype.grcode = function ({ code, codes }) {
-      return (codes || getCodes(this)).indexOf(code) !== -1
+      return searchCode(codes || getCodes(this), code)
     }
     Vue.prototype.getGlobalRouteCodes = getCodes
   }
