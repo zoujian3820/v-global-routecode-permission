@@ -18,22 +18,23 @@ const searchCode = (codes, code) => {
   return codes.find((itemCode) => itemCode.includes(realCode))
 }
 
-const RouteCodePermission = {
-  inserted(el, binding, vnode) {
-    if (binding.arg) {
+const RouteCodePermissionFn = function (el, binding, vnode) {
+  try {
+    const { code, codes = getCodes(vnode.context) } = binding.value
+    if (!searchCode(codes, code)) {
       el.parentNode.removeChild(el)
-    } else {
-      const { code, codes = getCodes(vnode.context) } = binding.value
-      if (!searchCode(codes, code)) {
-        el.parentNode.removeChild(el)
-      }
     }
+  } catch (e) {
+    //
   }
 }
 
 export default {
   install(Vue) {
-    Vue.directive('grcode', RouteCodePermission)
+    Vue.directive('grcode', {
+      inserted: RouteCodePermissionFn,
+      update: RouteCodePermissionFn
+    })
     Vue.prototype.grcode = function ({ code, codes }) {
       return searchCode(codes || getCodes(this), code)
     }
